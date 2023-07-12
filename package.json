@@ -1,0 +1,15 @@
+{
+  "main": "src/main/clusters.ts",
+  "scripts": {
+    "dev": "node -r ts-node/register -r dotenv/config ."
+  },
+  "dependencies": {
+    "hyper-express": "^6.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "dotenv": "^16.3.1"
+  }
+}
