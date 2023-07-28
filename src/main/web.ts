@@ -2,14 +2,17 @@ import HyperExpress from 'hyper-express';
 
 import { activityRouter } from '../routes/activity';
 import { backupsRouter } from '../routes/backups';
-import { installationRouter } from '../routes/installation';
 import { serversRouter } from '../routes/servers';
+import { installationRouter } from '../routes/installation';
 import { sftpRouter } from '../routes/sftp';
 
 const app = new HyperExpress.Server();
 
 app.use((req, res, next) => {
+  console.debug(`${req.method} ${req.path}${req.path_query ? `?${req.path_query}` : ''}`);
+  
   if (req.headers.origin) {
+    // TODO: Add a way to customize this, because leaving it like this is a security issue.
     res.header('vary', 'Origin');
     res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
     res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
@@ -24,10 +27,10 @@ app.options("/*", (req, res) => {
 });
 
 app.use('/api/remote/activity', activityRouter);
-app.use('/api/remote/backups/', backupsRouter);
-app.use('/api/remote/servers/', installationRouter);
+app.use('/api/remote/backups', backupsRouter);
 app.use('/api/remote/servers', serversRouter);
-app.use('/api/remote/sftp/', sftpRouter);
+app.use('/api/remote/servers', installationRouter);
+app.use('/api/remote/sftp', sftpRouter);
 
 app.all("*", (req, res) => {
   res.status(404).send("404 page not found");
