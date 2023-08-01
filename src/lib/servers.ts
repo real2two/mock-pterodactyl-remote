@@ -158,11 +158,11 @@ export async function addServer({ uuid, ip, port }: { uuid: string; ip: string; 
         cpu_limit: 0,
         threads: null,
         disk_space: 1024,
-        oom_disabled: false
+        oom_disabled: true
       },
       container: {
         image: 'ghcr.io/pterodactyl/yolks:java_8',
-        oom_disabled: false,
+        oom_disabled: true,
         requires_rebuild: false
       },
       allocations: {
