@@ -70,8 +70,8 @@ export interface Server {
 }
 
 const INSTALLATION_SCRIPT = {
-  container_image: "openjdk:8-jdk-slim",
-  entrypoint: "bash",
+  container_image: 'openjdk:8-jdk-slim',
+  entrypoint: 'bash',
   script: `#!/bin/ash
   # Paper Installation Script
   #

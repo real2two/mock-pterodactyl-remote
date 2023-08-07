@@ -13,7 +13,7 @@ serversRouter.get('/', async (req, res) => {
   const lastPage = Math.ceil(serverCount / limit);
   const to = ((page + 1) * limit) - 1;
 
-  return res.json({
+  res.json({
     data: servers,
     links: {
       first: `${process.env.PANEL_URL}/api/remote/servers?page=1`,
@@ -30,11 +30,11 @@ serversRouter.get('/', async (req, res) => {
       per_page: limit,
       to: to > serverCount ? serverCount : to,
       total: serverCount,
-    }
+    },
   });
 });
 
 serversRouter.post('/reset', (req, res) => {
   // This should reset all of the states of the server
-  return res.status(204).send('204 no content');
+  res.status(204).send('204 no content');
 });

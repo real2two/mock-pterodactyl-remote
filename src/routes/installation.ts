@@ -16,9 +16,17 @@ installationRouter.get('/:uuid', async (req, res) => {
     port: 25566 // WIP
   });
   
-  console.log('Created server', req.params.uuid);
+  console.log('Created server |', req.params.uuid);
 
   return res.json(createdServer);
+  
+  // res.status(404).json({ // The server was not found
+  //   errors: [{
+  //     code: 'RecordNotFoundException',
+  //     status: '404',
+  //     detail: '',
+  //   }],
+  // });
 });
 
 installationRouter.get('/:uuid/install', async (req, res) => {
@@ -26,17 +34,33 @@ installationRouter.get('/:uuid/install', async (req, res) => {
   if (!installation) return res.status(404).send('404 not found');
   
   res.json(installation);
+
+  // res.status(404).json({ // The server was not found
+  //   errors: [{
+  //     code: 'RecordNotFoundException',
+  //     status: '404',
+  //     detail: '',
+  //   }],
+  // });
 });
 
 installationRouter.post('/:uuid/install', (req, res) => {
-  console.log('Finished installation', req.params.uuid, req.body);
+  console.log('Finished installation |', req.params.uuid, req.body);
   res.status(204).send('204 no content');
+
+  // res.status(404).send('404 not found'); // The server was not found
 });
 
 installationRouter.post('/:uuid/transfer/success', (req, res) => {
-  
+  res.status(204).send('204 no content');
+
+  // res.status(404).send('404 not found'); // The server was not found
+  // res.status(409).send('409 conflict'); // The server is not being transferred
 });
 
 installationRouter.post('/:uuid/transfer/failure', (req, res) => {
-  
+  res.status(204).send('204 no content');
+
+  // res.status(404).send('404 not found'); // The server was not found
+  // res.status(409).send('409 conflict'); // The server is not being transferred
 });
