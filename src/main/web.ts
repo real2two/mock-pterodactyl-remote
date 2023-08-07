@@ -11,7 +11,7 @@ const app = new HyperExpress.Server();
 app.use((req, res, next) => {
   console.debug(`\n${req.method} ${req.path}${req.path_query ? `?${req.path_query}` : ''}`);
   
-  // CORs
+  // CORS
   if (req.headers.origin) {
     // TODO: Add a way to customize this, because leaving it like this is a security issue.
     res.header('vary', 'Origin');
